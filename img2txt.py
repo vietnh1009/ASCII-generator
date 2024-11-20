@@ -22,7 +22,7 @@ def main(opt):
     if opt.mode == "simple":
         CHAR_LIST = '@%#*+=-:. '
     else:
-        CHAR_LIST = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
+        CHAR_LIST = r"$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
     num_chars = len(CHAR_LIST)
     num_cols = opt.num_cols
     image = cv2.imread(opt.input)
