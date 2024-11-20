@@ -3,13 +3,17 @@ from PIL import Image, ImageFont, ImageDraw, ImageOps
 
 
 def sort_chars(char_list, font, language):
+
     if language == "chinese":
         char_width, char_height = font.getsize("制")
     elif language == "korean":
         char_width, char_height = font.getsize("ㅊ")
     elif language == "japanese":
         char_width, char_height = font.getsize("あ")
-    elif language in ["english", "german", "french", "spanish", "italian", "portuguese", "polish"]:
+    elif language in [
+            "english", "german", "french", "spanish", "italian", "portuguese",
+            "polish"
+    ]:
         char_width, char_height = font.getsize("A")
     elif language == "russian":
         char_width, char_height = font.getsize("A")
@@ -21,7 +25,10 @@ def sort_chars(char_list, font, language):
     draw.text((0, 0), char_list, fill=0, font=font)
     cropped_image = ImageOps.invert(out_image).getbbox()
     out_image = out_image.crop(cropped_image)
-    brightness = [np.mean(np.array(out_image)[:, 10 * i:10 * (i + 1)]) for i in range(len(char_list))]
+    brightness = [
+        np.mean(np.array(out_image)[:, 10 * i:10 * (i + 1)])
+        for i in range(len(char_list))
+    ]
     char_list = list(char_list)
     zipped_lists = zip(brightness, char_list)
     zipped_lists = sorted(zipped_lists)

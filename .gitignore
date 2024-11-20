@@ -1,0 +1,6 @@
+.idea
+.vscode
+local
+data/**/*.txt
+.flake8
+
