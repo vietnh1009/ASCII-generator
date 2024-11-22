@@ -6,7 +6,7 @@ import argparse
 import cv2
 import numpy as np
 from PIL import Image, ImageFont, ImageDraw, ImageOps
-
+hiuhuhuiu
 
 def get_args():
     parser = argparse.ArgumentParser("Image to ASCII")
