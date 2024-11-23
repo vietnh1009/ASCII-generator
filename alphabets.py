@@ -1,6 +1,6 @@
 GENERAL = {
     "simple": "@%#*+=-:. ",
-    "complex": "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
+    "complex": "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
 }
 # Full list could be found here https://github.com/tsroten/zhon/tree/develop/zhon/cedict
 CHINESE = {
