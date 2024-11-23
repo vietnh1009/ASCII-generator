@@ -6,7 +6,7 @@ Recently, this repository has been protected and supported by the Chinese commun
 
 ## Introduction
 
-Here is my python source code for ASCII generator. With my code: 
+Here is my Python source code for ASCII generator. With my code: 
 * **Given input image, we could generate ASCII art stored under text format in different languages (.txt)**
 * **Given input image, we could generate ASCII art stored under image formats in different languages (.png, .jpg, ...). In each format, there are 2 options: Black background and white characters, or vice versa**
 * **Given input video, we could generate ASCII art stored under video formats in different languages (.avi, .mp4, ...)**
