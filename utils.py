@@ -4,9 +4,7 @@ from PIL import Image, ImageFont, ImageDraw, ImageOps
 
 def sort_chars(char_list, font, language):
     if language == "chinese":
-        bbox = font.getbbox("制")
-        char_width=bbox[2]-bbox[0]
-        char_height=bbox[3]-bbox[1]
+        char_width, char_height = font.getsize("制")
     elif language == "korean":
         char_width, char_height = font.getsize("ㅊ")
     elif language == "japanese":
