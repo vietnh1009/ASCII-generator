@@ -1,5 +1,9 @@
 # [PYTHON] ASCII generator
 
+## [22/11/2024] A thank you to the Chinese community
+
+Recently, this repository has been protected and supported by the Chinese community in relation to a copyright issue. A million thanks to Chinese netizens in particular, and the Chinese community in general
+
 ## Introduction
 
 Here is my python source code for ASCII generator. With my code: 
