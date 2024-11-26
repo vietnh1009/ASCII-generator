@@ -10,9 +10,16 @@ def sort_chars(char_list, font, language):
     elif language == "japanese":
         char_width, char_height = font.getsize("あ")
     elif language in ["english", "german", "french", "spanish", "italian", "portuguese", "polish"]:
-        char_width, char_height = font.getsize("A")
+        # char_width, char_height = font.getsize("A")
+        bbox = font.getbbox("A")
+        char_width = bbox[2] - bbox[0]
+        char_height = bbox[3] - bbox[1]
     elif language == "russian":
         char_width, char_height = font.getsize("A")
+        # bbox = font.getbbox("A")
+        # char_width = bbox[2] - bbox[0]
+        # char_height = bbox[3] - bbox[1]
+
     num_chars = min(len(char_list), 100)
     out_width = char_width * len(char_list)
     out_height = char_height
