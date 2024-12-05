@@ -7,6 +7,12 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageOps
 from utils import get_data
 
+def get_char_size(font, char):
+    if hasattr(font, "getsize"):
+        return font.getsize(char)  # 旧版本 Pillow
+    else:
+        bbox = font.getbbox(char)  # 新版本 Pillow
+        return bbox[2] - bbox[0], bbox[3] - bbox[1]
 
 def get_args():
     parser = argparse.ArgumentParser("Image to ASCII")
@@ -41,7 +47,7 @@ def main(opt):
         cell_height = 12
         num_cols = int(width / cell_width)
         num_rows = int(height / cell_height)
-    char_width, char_height = font.getsize(sample_character)
+    char_width, char_height = get_char_size(font, sample_character)
     out_width = char_width * num_cols
     out_height = scale * char_height * num_rows
     out_image = Image.new("L", (out_width, out_height), bg_code)
