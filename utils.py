@@ -1,18 +1,24 @@
 import numpy as np
 from PIL import Image, ImageFont, ImageDraw, ImageOps
 
+def get_char_size(font, char):
+    if hasattr(font, "getsize"):
+        return font.getsize(char)  # 旧版本 Pillow
+    else:
+        bbox = font.getbbox(char)  # 新版本 Pillow
+        return bbox[2] - bbox[0], bbox[3] - bbox[1]
 
 def sort_chars(char_list, font, language):
     if language == "chinese":
-        char_width, char_height = font.getsize("制")
+        char_width, char_height = get_char_size(font,"制")
     elif language == "korean":
-        char_width, char_height = font.getsize("ㅊ")
+        char_width, char_height = get_char_size(font,"ㅊ")
     elif language == "japanese":
-        char_width, char_height = font.getsize("あ")
+        char_width, char_height = get_char_size(font,"あ")
     elif language in ["english", "german", "french", "spanish", "italian", "portuguese", "polish"]:
-        char_width, char_height = font.getsize("A")
+        char_width, char_height = get_char_size(font,"A")
     elif language == "russian":
-        char_width, char_height = font.getsize("A")
+        char_width, char_height = get_char_size(font,"A")
     num_chars = min(len(char_list), 100)
     out_width = char_width * len(char_list)
     out_height = char_height
