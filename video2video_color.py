@@ -7,6 +7,12 @@ import cv2
 import numpy as np
 from PIL import Image, ImageFont, ImageDraw, ImageOps
 
+def get_char_size(font, char):
+    if hasattr(font, "getsize"):
+        return font.getsize(char)  # 旧版本 Pillow
+    else:
+        bbox = font.getbbox(char)  # 新版本 Pillow
+        return bbox[2] - bbox[0], bbox[3] - bbox[1]
 
 def get_args():
     parser = argparse.ArgumentParser("Image to ASCII")
@@ -28,7 +34,7 @@ def main(opt):
     if opt.mode == "simple":
         CHAR_LIST = '@%#*+=-:. '
     else:
-        CHAR_LIST = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
+        CHAR_LIST = r"$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
     if opt.background == "white":
         bg_code = (255, 255, 255)
     else:
@@ -57,7 +63,7 @@ def main(opt):
             cell_height = 12
             num_cols = int(width / cell_width)
             num_rows = int(height / cell_height)
-        char_width, char_height = font.getsize("A")
+        char_width, char_height = get_char_size(font, "A")
         out_width = char_width * num_cols
         out_height = 2 * char_height * num_rows
         out_image = Image.new("RGB", (out_width, out_height), bg_code)
@@ -80,7 +86,7 @@ def main(opt):
         try:
             out
         except:
-            out = cv2.VideoWriter(opt.output, cv2.VideoWriter_fourcc(*"XVID"), fps,
+            out = cv2.VideoWriter(opt.output, cv2.VideoWriter_fourcc(*"mp4v"), fps,
                                   ((out_image.shape[1], out_image.shape[0])))
 
         if opt.overlay_ratio:
