@@ -117,7 +117,110 @@ By running the sript **img2img_color.py** or **img2img.py** with different value
 
 ## Requirements
 
-* **python 3.6**
-* **cv2**
-* **PIL** 
+* **Python 3.6+**
+* **opencv-python**
+* **Pillow** 
 * **numpy**
+
+## Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/uvipen/ASCII-generator.git
+cd ASCII-generator
+```
+
+### 2. Create a virtual environment (recommended)
+```bash
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
+```
+
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+### Image to Text (ASCII .txt output)
+```bash
+python img2txt.py --input data/input.jpg --output output/result.txt --mode complex --num_cols 150
+```
+
+**Arguments:**
+| Argument | Default | Description |
+|----------|---------|-------------|
+| `--input` | `data/input.jpg` | Path to input image |
+| `--output` | `data/output.txt` | Path to output text file |
+| `--mode` | `complex` | `simple` (10 chars) or `complex` (70 chars) |
+| `--num_cols` | `150` | Number of characters for output width |
+
+---
+
+### Image to Image (ASCII .jpg/.png output)
+
+**Grayscale:**
+```bash
+python img2img.py --input data/input.jpg --output output/result.jpg --background black --num_cols 300
+```
+
+**Color:**
+```bash
+python img2img_color.py --input data/input.jpg --output output/result.jpg --background black --num_cols 300 --language english
+```
+
+**Arguments:**
+| Argument | Default | Description |
+|----------|---------|-------------|
+| `--input` | `data/input.jpg` | Path to input image |
+| `--output` | `data/output.jpg` | Path to output image |
+| `--language` | `english` | Language alphabet (english, german, french, korean, chinese, japanese, russian, spanish, etc.) |
+| `--mode` | `standard` | Character mode |
+| `--background` | `black` | `black` or `white` background |
+| `--num_cols` | `300` | Number of characters for output width |
+| `--scale` | `2` | Upscale output (only in color version) |
+
+---
+
+### Video to Video (ASCII .mp4/.avi output)
+
+**Grayscale:**
+```bash
+python video2video.py --input data/input.mp4 --output output/result.mp4 --mode simple --background white --num_cols 100
+```
+
+**Color:**
+```bash
+python video2video_color.py --input data/input.mp4 --output output/result.mp4 --mode complex --background black --num_cols 100
+```
+
+**Arguments:**
+| Argument | Default | Description |
+|----------|---------|-------------|
+| `--input` | `data/input.mp4` | Path to input video |
+| `--output` | `data/output.mp4` | Path to output video |
+| `--mode` | `simple`/`complex` | `simple` (10 chars) or `complex` (70 chars) |
+| `--background` | `white`/`black` | `black` or `white` background |
+| `--num_cols` | `100` | Number of characters for output width |
+| `--scale` | `1` | Upscale output |
+| `--fps` | `0` | Frame rate (0 = use original) |
+| `--overlay_ratio` | `0.2` | Size of original video overlay (0 to disable) |
+
+## Examples
+
+```bash
+# Simple black & white ASCII from image
+python img2img.py --input my_photo.jpg --output ascii_photo.png --background white --num_cols 200
+
+# Colorful Japanese ASCII art
+python img2img_color.py --input anime.jpg --output anime_ascii.jpg --language japanese --num_cols 400
+
+# Convert a video with color ASCII
+python video2video_color.py --input video.mp4 --output ascii_video.avi --num_cols 150 --overlay_ratio 0.15
+```
