@@ -43,7 +43,9 @@ def main(opt):
         cell_height = 12
         num_cols = int(width / cell_width)
         num_rows = int(height / cell_height)
-    char_width, char_height = font.getsize(sample_character)
+    bbox = font.getbbox(sample_character)
+    char_width = bbox[2] - bbox[0]
+    char_height = bbox[3] - bbox[1]
     out_width = char_width * num_cols
     out_height = scale * char_height * num_rows
     out_image = Image.new("RGB", (out_width, out_height), bg_code)
